@@ -1,0 +1,32 @@
+{
+    "product":{
+        "PLUcode": 3214,
+        "barcode": 2134567834569,
+        "productName": "Mr Muscle Original 750ml",
+        "category": "cleaning",
+        "packsize": 24,
+        "quantity": 12,
+        "unitPrice": 2.50,
+        "sellingPrice": 3.99
+    },
+    "product2":{
+        "PLUcode": 2314,
+        "barcode": 6789456371523,
+        "productName": "Aquaclaer Water 500ml",
+        "category": "water",
+        "packsize": 24,
+        "quantity": 12,
+        "unitPrice": 0.30,
+        "sellingPrice": 0.50
+    },
+    "product3":{
+        "PLUcode": 7621,
+        "barcode": 645331342537,
+        "productName": "7up 500ml",
+        "category": "soft drinks",
+        "packsize": 24,
+        "quantity": 6,
+        "unitPrice": 0.30,
+        "sellingPrice": 0.50
+    }
+}

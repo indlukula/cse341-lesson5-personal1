@@ -1,0 +1,21 @@
+ProjectName:
+
+product:
+	id
+	PLU code
+	barcode
+	productName
+	category
+	packsize
+	quantity
+	unitPrice
+	sellingPrice
+
+user:
+	username
+	firstname
+	lastname
+	password
+	email
+	phone
+	designation

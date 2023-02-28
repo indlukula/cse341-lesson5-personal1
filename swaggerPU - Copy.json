@@ -1,0 +1,254 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Product API",
+      "description": "Product API",
+      "version": "1.0.0"
+    },
+    "host": "sifundo-cse341-personal5.onrender.com",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "product",
+        "description": "Creating and managing products"
+      },
+      {
+        "name": "user"
+      }
+    ],
+    "schemes": [
+      "https",
+      "http"
+    ],
+    "paths": {
+      "/product": {
+        "get": {
+          "tags": ["product"],
+          "summary": "Finds all products",
+          "description": "List of all products",
+          "operationId": "getProducts",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "productName",
+              "in": "path",
+              "description": "Product name works as an id",
+              "required": true,
+              "type":"array"
+              
+              }
+          ],
+          
+          "responses": {
+            "200": {
+              "description": "Successful",
+              "schema": {
+                "$ref": "#/definitions/product"
+            
+              }
+            },
+            "400": {
+              "description": "Product name invalid"
+            }
+          }
+        }, 
+         "post": {
+         "tags": ["product"],
+         "summary": "Creater product",
+         "description": "For creating new products",
+         "operationId": "createProduct",
+         "produces":["application/json"],
+         "parameters": [{
+
+          "in": "body",
+          "name": "body",
+          "description": "Created product object",
+          "required": true,
+          "schema": {
+            "type": "object"
+          }
+         }
+
+         ],
+         "responses": {
+          "201": {
+            "description": "Created successfully",
+            "schema":{
+              "$ref": "#/definitions/product"
+            }
+          },
+          "401": {
+            "description": "Something went wrong"
+          }
+         }
+        }
+      },
+      
+      "/user": {
+        "post": {
+          "tags": ["user"],
+          "summary": "create user",
+          "description": "Creates users",
+          "operationId": "createUser",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "description": "creates user object",
+              "required": true,
+              "schema": {
+                "type":"array"
+              }
+              
+            }
+          ],
+          
+          "responses": {
+            "201": {
+              "description": "Successful",
+              "schema": {
+                "$ref": "#/definitions/user"
+              }
+            },
+            "400": {
+              "description": "Something went wrong"
+            }
+          }
+        }
+      }, 
+      "/user/{username}":{
+        "get": {
+          
+          "tags": ["user"],
+          "summary": "Get user",
+          "description": "Get user by username",
+          "operationId": "getUser",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "username",
+              "in": "path",
+              "description": "Fetch the name",
+              "required": true,
+                "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Operation successfully",
+              "schema":{
+                "$ref": "#/definitions/user"
+              }
+            },
+            "400": {
+              "description": "Invalid username"
+            }
+          }
+        }
+      },
+      "/product/{productId}": {
+        "get": {
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "array"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful",
+              "schema":{
+                "$ref": "#/definitions/product"
+
+              }
+            }
+          }
+        },
+        
+        "delete": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Delete successful"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+          }
+        },
+        "definitions": {
+          "user": {
+            "type":"object",
+            "required": ["password", "username"],
+            "properties": {
+              "_id": {
+                "type":"integer",
+                "format": "string"
+              },
+              "username": {
+                "type":"string"
+              },
+              "password": {
+                "type":"string"
+              },
+              "firstname": {
+                "type":"string"
+              }
+            }
+          },
+          "product": {
+            "type":"object",
+            "required": ["productId", "PLUcode", "barcode", "productName",  "category", "packsize", "quantity", "unitPrice", "sellingPrice"],
+            "properties": {
+              "_id":{
+                "type":"integer",
+                "format": "int64"
+              },
+              "PLUcode":{
+                "type":"integer",
+                "format": "int64"
+              },
+              "barcode":{
+                "type":"integer",
+                "format": "int64"
+              },
+              "productName":{
+                "type":"string"
+              },
+              "category":{
+                "type":"string"
+              },
+              "packsize":{
+                "type":"number"
+              },
+              "quantity":{
+                "type":"number"
+              },
+              "unitPrice":{
+                "type":"number"
+              },
+              "sellingPrice":{
+                "type":"number"
+              }
+            }
+           }
+          }
+        }
+      

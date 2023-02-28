@@ -1,0 +1,20 @@
+{
+    "user":{
+        "username": "sifweb",
+        "firstname": "Sifundo",
+        "lastname": "Maphosa",
+        "password": "Indlukula2023",
+        "email": "sifundo@maphosa.com",
+        "phone": "0772529092",
+        "designtion": "Supervisor"
+    },
+    "useer2":{
+        "username": "mabax",
+        "firstname": "Mduduzi",
+        "lastname": "Sibanda",
+        "password": "Mabaleka2023",
+        "email": "mduduzi@sibanda.com",
+        "phone": "0772777102",
+        "designation": "Cashier"
+    }
+}
