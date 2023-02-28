@@ -192,7 +192,7 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "type": "array"
+              "type": "string"
             }
           ],
           "responses": {
@@ -204,7 +204,7 @@
               }
             }
           }
-        
+          
       },
       
       "delete": {
@@ -255,16 +255,14 @@
             "required": ["productId", "PLUcode", "barcode", "productName",  "category", "packsize", "quantity", "unitPrice", "sellingPrice"],
             "properties": {
               "_id":{
-                "type":"integer",
-                "format": "int64"
+                "type":"string"
               },
               "PLUcode":{
-                "type":"integer",
-                "format": "int64"
+                "type":"string"
+          
               },
               "barcode":{
-                "type":"integer",
-                "format": "int64"
+                "type":"string"
               },
               "productName":{
                 "type":"string"
