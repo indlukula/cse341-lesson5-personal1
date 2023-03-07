@@ -1,7 +1,5 @@
-module.exports = (mongodb) => {
-    const Product = mongodb.model(
-      'product',
-      mongodb.Schema({
+module.exports = (mongoose) => {
+    const productSchema =  mongoose.Schema({
         productId: {
           type: Number
         },
@@ -24,14 +22,13 @@ module.exports = (mongodb) => {
         quantity: {
             type: Number
         },
-        unitPrice: {
+        unitprice: {
             type: Number
         },
         sellingPrice: {
             type: Number
         }
-      })
-    );
+      });
     
-    return Product;
+    return mongoose.model('product', productSchema);
   };

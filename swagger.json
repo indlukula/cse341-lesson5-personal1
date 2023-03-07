@@ -47,7 +47,7 @@
 
           "in": "body",
           "name": "body",
-          "description": "Created product object",
+          "description": "creates product object",
           "required": true,
           "schema": {
             "type":"object",
@@ -113,7 +113,7 @@
                 "type":"object",
                 "properties": {
                   
-                  "userName":{
+                  "username":{
                     "type":"string"
                   },
                   "firstName":{
@@ -235,10 +235,10 @@
             "required": ["password", "username"],
             "properties": {
               "_id": {
-                "type":"integer",
+                "type":"string",
                 "format": "string"
               },
-              "userName": {
+              "username": {
                 "type":"string"
               },
               "password": {

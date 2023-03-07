@@ -1,5 +1,6 @@
-module.exports = (mongodb) => {
-    const userSchema = mongodb.Schema({
+
+module.exports = (mongoose) => {
+    const userSchema = mongoose.Schema({
       userId: {
         type: Number
       },
@@ -27,5 +28,5 @@ module.exports = (mongodb) => {
      }
      
     });
-    return mongodb.model('user', userSchema);
+    return mongoose.model('user', userSchema);
   };
