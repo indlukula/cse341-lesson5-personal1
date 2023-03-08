@@ -22,21 +22,45 @@
     "paths": {
       
       "/product": {
-        "get": {
-          "tags": ["product"],
-          "summary": "Finds all products",
-          "description": "List of all products",
-          "operationId": "getProducts",
-          "produces": ["application/json"],
-          "parameters": [],    
-          "responses": {
-            "200": {
-              "description": "Successful"                
+              "get": {
+                "tags": ["product"],
+                "summary": "Finds all products",
+                "description": "List of all products",
+                "operationId": "getProducts",
+                "produces": ["application/json"],
+                "parameters": [],    
+                "responses": {
+                "200": {
+                  "description": "Successful"                
+                  }
+                }
+              
               }
-            }
            },
-          
-         
+           "/product/{productId}": {
+            "get": {
+              "description": "",
+              "produces": [
+                "application/json"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Successful",
+                  "schema":{
+                    "$ref": "#/definitions/product"
+    
+                  }
+                }
+              }
+            },
          "post": {
          "tags": ["product"],
          "summary": "Creater product",
@@ -45,56 +69,112 @@
          "produces":["application/json"],
          "parameters": [{
 
-          "in": "body",
-          "name": "body",
-          "description": "creates product object",
-          "required": true,
-          "schema": {
-            "type":"object",
-            "properties": {
-             
-              "PLUcode":{
-                "type":"integer",
-                "format": "int64"
-              },
-              "barcode":{
-                "type":"integer",
-                "format": "int64"
-              },
-              "productName":{
-                "type":"string"
-              },
-              "category":{
-                "type":"string"
-              },
-              "packsize":{
-                "type":"number"
-              },
-              "quantity":{
-                "type":"number"
-              },
-              "unitPrice":{
-                "type":"number"
-              },
-              "sellingPrice":{
-                "type":"number"
-              }
-            }
-          }
-         }
+              "in": "body",
+              "name": "body",
+              "description": "creates product object",
+              "required": true,
+                  "schema": {
+                    "type":"object",
+                      "properties": {
+                      
+                        "PLUcode":{
+                          "type":"integer",
+                          "format": "int64"
+                        },
+                        "barcode":{
+                          "type":"integer",
+                          "format": "int64"
+                        },
+                        "productName":{
+                          "type":"string"
+                        },
+                        "category":{
+                          "type":"string"
+                        },
+                        "packsize":{
+                          "type":"number"
+                        },
+                        "quantity":{
+                          "type":"number"
+                        },
+                        "unitprice":{
+                          "type":"number"
+                        },
+                        "sellingPrice":{
+                          "type":"number"
+                        }
+                      }
+                   }
+                 }
+        
+                ],
 
-         ],
+            "responses": {
+              "201": {
+                "description": "Created successfully"
+                
+                },
+                "401": {
+                  "description": "Something went wrong"
+                }
+              }
+            
+        },
+        
+         "put": {
+          "tags": ["product"],
+          "summary": "Update Procuct",
+          "description": "Updating product",
+          "operationId": "updateProduct",
+          "produces": ["application/json"],
+          "parameters": [{
+
+            "in": "path",
+          "name": "_id",
+          "description": "Update product object",
+          "required": true,
+            "type":"string"
+            
+            }
+          ],
+         
+        
+         
          "responses": {
           "201": {
             "description": "Created successfully"
-         
+            
           },
           "401": {
             "description": "Something went wrong"
           }
          }
-         }
-      },
+        
+      
+    },
+
+    "delete": {
+      "description": "",
+      "parameters": [
+        {
+          "name": "productId",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "204": {
+          "description": "Delete successful"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    }
+  
+
+},
       
       "/user": {
         "post": {
@@ -152,140 +232,118 @@
         }
       }, 
       "/user/{username}":{
-        "get": {
+                "get": {
           
-          "tags": ["user"],
-          "summary": "Get user",
-          "description": "Get user by username",
-          "operationId": "getUser",
-          "produces": ["application/json"],
-          "parameters": [
-            {
-              "name": "username",
-              "in": "path",
-              "description": "Fetch the name",
-              "required": true,
-                "type": "string"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Operation successfully",
-              "schema":{
-                "$ref": "#/definitions/user"
-              }
-            },
-            "400": {
-              "description": "Invalid username"
-            }
-          }
-        }
-      },
-      "/product/{productId}": {
-        "get": {
-          "description": "",
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Successful",
-              "schema":{
-                "$ref": "#/definitions/product"
-
-              }
-            }
-          }
-          
-      },
+                          "tags": ["user"],
+                          "summary": "Get user",
+                          "description": "Get user by username",
+                          "operationId": "getUser",
+                          "produces": ["application/json"],
+                          "parameters": [
+                            {
+                              "name": "username",
+                              "in": "path",
+                              "description": "Fetch the name",
+                              "required": true,
+                                "type": "string"
+                            }
+                          ],
+                          "responses": {
+                            "200": {
+                              "description": "Operation successfully",
+                              "schema":{
+                                "$ref": "#/definitions/user"
+                              }
+                            },
+                            "400": {
+                              "description": "Invalid username"
+                            }
+                          }
+                      
+                   },
       
-      "delete": {
-          "description": "",
-          "parameters": [
-            {
-              "name": "productId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "204": {
-              "description": "Delete successful"
-            },
-            "500": {
-              "description": "Internal Server Error"
-            }
-          }
-        }
-        }  
-       },
+                    "delete": {
+                        "description": "",
+                        "parameters": [
+                          {
+                            "name": "productId",
+                            "in": "path",
+                            "required": true,
+                            "type": "string"
+                          }
+                        ],
+                        "responses": {
+                          "204": {
+                            "description": "Delete successful"
+                          },
+                          "500": {
+                            "description": "Internal Server Error"
+                          }
+                        }
+                      }
+                    } 
+                  
+                  },
           
-      "definitions": {
-          "user": {
-            "type":"object",
-            "required": ["password", "username"],
-            "properties": {
-              "_id": {
-                "type":"string",
-                "format": "string"
-              },
-              "username": {
-                "type":"string"
-              },
-              "password": {
-                "type":"string"
-              },
-              "firstName": {
-                "type":"string"
-              }
-            }
-           
-          },
-          "product": {
-            "type":"object",
-            "required": ["productId", "PLUcode", "barcode", "productName",  "category", "packsize", "quantity", "unitPrice", "sellingPrice"],
-            "properties": {
-              "_id":{
-                "type":"string"
-              },
-              "PLUcode":{
-                "type":"string"
-          
-              },
-              "barcode":{
-                "type":"string"
-              },
-              "productName":{
-                "type":"string"
-              },
-              "category":{
-                "type":"string"
-              },
-              "packsize":{
-                "type":"number"
-              },
-              "quantity":{
-                "type":"number"
-              },
-              "unitPrice":{
-                "type":"number"
-              },
-              "sellingPrice":{
-                "type":"number"
-              }
-          }
-        }
+                  "definitions": {
+                      "user": {
+                        "type":"object",
+                        "required": ["password", "username"],
+                        "properties": {
+                          "_id": {
+                            "type":"string",
+                            "format": "string"
+                          },
+                          "username": {
+                            "type":"string"
+                          },
+                          "password": {
+                            "type":"string"
+                          },
+                          "firstName": {
+                            "type":"string"
+                          }
+                        }
+                      
+                      },
+                        "product": {
+                          "type":"object",
+                          "required": ["productId", "PLUcode", "barcode", "productName",  "category", "packsize", "quantity", "unitPrice", "sellingPrice"],
+                          "properties": {
+                            "_id":{
+                              "type":"string"
+                            },
+                            "PLUcode":{
+                              "type":"string"
+                        
+                            },
+                            "barcode":{
+                              "type":"string"
+                            },
+                            "productName":{
+                              "type":"string"
+                            },
+                            "category":{
+                              "type":"string"
+                            },
+                            "packsize":{
+                              "type":"number"
+                            },
+                            "quantity":{
+                              "type":"number"
+                            },
+                            "unitPrice":{
+                              "type":"number"
+                            },
+                            "sellingPrice":{
+                              "type":"number"
+                              }  
+                            }  
+                        }
+                     }
     
-  }
+        
+  
 }  
        
   

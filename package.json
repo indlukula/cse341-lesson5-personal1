@@ -29,7 +29,8 @@
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.4.0",
     "mongoose": "^6.2.4",
-    "swagger-ui-express": "^4.6.2"
+    "swagger-ui-express": "^4.6.2",
+    "validatorjs": "^3.22.1"
   },
   "devDependencies": {
     "eslint": "^8.10.0",
