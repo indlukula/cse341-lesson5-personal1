@@ -1,9 +1,9 @@
 const db = require('../models');
 const Product = db.product;
+const ObjectId = require('mongodb').ObjectId;
 
 
-
-const getAll = async (req, res) => {
+module.exports.getAll = async (req, res) => {
   try {
     Product.find({})
     .then((data) => {
@@ -19,9 +19,9 @@ const getAll = async (req, res) => {
   }
 };
 
-const getSingle = async (req, res) => {
+module.exports.getProduct = async (req, res) => {
   try {
-    const productId = req.params.productId;
+    const productId = new ObjectId(req.params.id);
     Product.find({ productId: productId })
     .then((data) => {
       res.status(200).send(data);
@@ -36,7 +36,7 @@ const getSingle = async (req, res) => {
   }
 };
 
-const createProduct = async (req, res) => {
+module.exports.createProduct = async (req, res) => {
   try {
     if (!req.body.PLUcode || !req.body.barcode || !req.body.productName || !req.body.category 
       || !req.body.packsize || !req.body.quantity || !req.body.unitprice || !req.body.sellingPrice) {
@@ -61,15 +61,15 @@ const createProduct = async (req, res) => {
 }
 };
 
-const updateProduct = async (req, res) => {
+module.exports.updateProduct = async (req, res) => {
   try {
-    const productId = req.params.productId;
+    const productId = new ObjectId(req.params.id);
     if (!productId) {
       res.status(400).send({ message: 'Invalid ProductId Supplied' });
       return;
     
     }
-    Product.findOne({ productId: productId }, function (err, product) {
+    Product.updateOne({ productId: productId }, function (err, product) {
       product.PLUcode = req.params.PLUcode;
       product.barcode = req.body.barcode;
       product.productName = req.body.productName;
@@ -93,7 +93,7 @@ const updateProduct = async (req, res) => {
 };
 
 
-const deleteProduct = async (req, res) => {
+module.exports.deleteProduct = async (req, res) => {
   try {
     const productId = req.params.productId;
     if (productId) {
@@ -113,10 +113,3 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-module.exports = {
-  getAll,
-  getSingle,
-  createProduct,
-  updateProduct,
-  deleteProduct
-};

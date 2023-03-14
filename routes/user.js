@@ -6,7 +6,7 @@ const validation = require('../middleware/validate');
 
 router.get('/', userController.getAll);
 
-router.get('/:username', userController.getSingle);
+router.get('/:username', userController.getUser);
 
 router.post('/', validation.saveUser, userController.createUser);
 

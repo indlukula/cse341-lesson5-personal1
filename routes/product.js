@@ -6,7 +6,7 @@ const validation = require('../middleware/validate');
 
 router.get('/', productController.getAll);
 
-router.get('/:Id', productController.getSingle);
+router.get('/:Id', productController.getProduct);
 
 router.post('/', validation.saveProduct, productController.createProduct);
 

@@ -53,6 +53,9 @@ const saveProduct = (req, res, next) => {
     });
   };
   
+
+
   module.exports = {
-    saveProduct
+    saveProduct,
+    saveUser
   };
