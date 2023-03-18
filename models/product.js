@@ -1,7 +1,7 @@
-module.exports = (mongoose) => {
-    const productSchema =  mongoose.Schema({
+module.exports = (mongodb) => {
+    const productSchema =  mongodb.Schema({
         productId: {
-          type: Number
+          type: String
         },
         PLUcode: {
           type: Number
@@ -29,6 +29,6 @@ module.exports = (mongoose) => {
             type: Number
         }
       });
-    
-    return mongoose.model('product', productSchema);
+      
+    return mongodb.model('product', productSchema);
   };

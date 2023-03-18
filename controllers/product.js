@@ -1,30 +1,41 @@
 const db = require('../models');
 const Product = db.product;
 const ObjectId = require('mongodb').ObjectId;
+const mongodb = require('../config/db.config.js');
 
+//  Names of the Database and Collections from the db.config file
+const database = require('../config/db.config.js').database;
+const collection = require('../config/db.config.js').collection;
 
-module.exports.getAll = async (req, res,) => {
+const getAll = async (req, res) => {
   try {
-    Product.find({})
-    .then((data) => {
-      res.status(200).send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-         message: err.message || 'Some error occured while retrieving products.'
+      mongodb
+          .getDb()
+          .db(database)
+          .collection(collection)
+          .find()
+          .toArray().then((lists) => {
+          res.setHeader('Content-Type', 'application/json');
+          res.status(200)
+          .json(lists[0]);
       });
-    });
-} catch (err) {
-  res.status(500).json(err);
-  }
+  } catch (err1) {
+  res.status(500).json(err1);
+      console.log(err1.message);
+}
+
 };
 
-module.exports.getProduct = async (req, res) => {
+const getProduct = async (req, res) => {
   try {
     const productId = new ObjectId(req.params.id);
-    Product.find({ productId: productId })
-    .then((data) => {
-      res.status(200).send(data);
+    mongodb
+        .getDb()
+        .db(database)
+        .collection(collection)
+        Product.find({ productId: productId })
+        .then((data) => {
+        res.status(200).send(data);
     })
     .catch((err) => {
       res.status(500).send({
@@ -36,7 +47,7 @@ module.exports.getProduct = async (req, res) => {
   }
 };
 
-module.exports.createProduct = async (req, res) => {
+const createProduct = async (req, res) => {
   try {
     if (!req.body.PLUcode || !req.body.barcode || !req.body.productName || !req.body.category 
       || !req.body.packsize || !req.body.quantity || !req.body.unitprice || !req.body.sellingPrice) {
@@ -44,72 +55,101 @@ module.exports.createProduct = async (req, res) => {
         return;
       }
     
-  const product = new Product(req.body);
-  product
-    .save()
-    .then((data) => {
-      console.log(data);
-      res.status(201).send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({ message: err.message || 'Some error occured while creating the product.'
-    });
+  const newProduct = {
+    PLUcode: req.body.PLUcode,
+    barcode: req.body.barcode,
+    productName: req.body.productName,
+    category: req.body.category,
+    packsize: req.body.packsize,
+    quantity: req.body.quantity,
+    unitPrice: req.body.unitPrice,
+    sellingPrice: req.body.sellingPrice
+  };
+  const response = await mongodb
+      .getDb()
+      .db(database)
+      .collection(collection)
+      .insertOne(newProduct);
 
-    });
+  if (response.acknowledged) {
+    res.status(201)
+    .json(response);
+    console.log('Information saved to Successfully');
+  } else {
+    res.status(500)
+    .json(response.error || 'Some error occured while creating the product.');
+    console.log('Uploading failed');
+  }
 } catch (err) {
   res.status(500).json(err);
 }
 };
-
-module.exports.updateProduct = async (req, res) => {
+  
+const updateProduct = async (req, res) => {
   try {
     const productId = new ObjectId(req.params.id);
     if (!productId) {
       res.status(400).send({ message: 'Invalid ProductId Supplied' });
       return;
-    
     }
-    Product.updateOne({ productId: productId }, function (err, product) {
-      product.PLUcode = req.params.PLUcode;
-      product.barcode = req.body.barcode;
-      product.productName = req.body.productName;
-      product.category = req.body.category;
-      product.packsize = req.body.packsize;
-      product.quantity = req.body.quantity;
-      product.unitPrice = req.body.unitprice;
-      product.sellingPrice = req.body.sellingPrice;
-      product.save(function (err) {
-        if  (err) {
-          res.status(500).json(err || 'Some error occured while updating the product');
-          
-        } else {
-          res.status(204).send();
-        }
-      });
-    });
+    const updatedPrduct = {
+      productId: req.body.productId,
+      PLUcode: req.params.PLUcode,
+      barcode: req.body.barcode,
+      productName: req.body.productName,
+      category: req.body.category,
+      packsize: req.body.packsize,
+      quantity: req.body.quantity,
+      unitPrice: req.body.unitPrice,
+      sellingPrice: req.body.sellingPrice
+    };
+    const response = await mongodb
+        .getDb()
+        .db(database)
+        .collection(collection)
+        .replaceOne({ productId: productId }, updatedPrduct); 
+    if (response.modifiedCount > 0) {
+      res.status(204).json(response);
+      console.log('Product update failed.');
+    }  
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500);
+    console.log(err);
   }
+        
 };
 
 
-module.exports.deleteProduct = async (req, res) => {
+const deleteProduct = async (req, res) => {
   try {
     const productId = req.params.productId;
     if (productId) {
       res.status(400).send({ message: 'Invalid ProductId Supplied' });
       return;
     }
-
-    Product.deleteOne({ productId: productId }, function (err, result) {
-      if (err) {
-        res.status(500).json(err || 'Some error occurred while deleting the contact.');
-      } else {
-        res.status(204).send(result);
-      }
-    });
+    const response = await mongodb
+        .getDb()
+        .db(database)
+        .collection(collection)
+        .deleteOne({ productId: productId }, true);
+        console.log(response);
+    if (response.deletedCount > 0) {
+      res.status(200).send();
+      console.log(productId + ' product deleted');
+    } else {
+      res.status(500).json(response.error || 'An error occured while deleting product');
+      console.log('Delete failed');
+    }
   } catch (err) {
-    res.status(500).json(err || 'Some error occurred while deleting the contact.');
+    res.status(500).json(err);
   }
-};
 
+    
+};
+module.exports = { 
+  getAll, 
+  getProduct, 
+  createProduct,
+  updateProduct,
+  deleteProduct
+};

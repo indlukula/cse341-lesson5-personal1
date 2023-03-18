@@ -1,12 +1,13 @@
 // LOCALHOST
 ###
-GET http://localhost:8080/contacts/
+GET http://localhost:8080/product/
 ###
 GET http://localhost:8080/user
 
 ###
 POST http://localhost:8080/product HTTP/1.1
 Content-Type: application/json
+
 {
         "PLUcode": 2314,
         "barcode": 6789456371523,
@@ -21,6 +22,7 @@ Content-Type: application/json
 ###
 POST http://localhost:8080/user/ HTTP/1.1
 Content-Type: application/json
+
 {
         "username": "mabax",
         "firstname": "Mduduzi",
@@ -54,7 +56,7 @@ Content-Type: application/json
         "category": "soft drinks",
         "packsize": 24,
         "quantity": 6,
-        "unitPrice": 0.30,
+        "unitprice": 0.30,
         "sellingPrice": 0.50
 }
 
@@ -63,13 +65,13 @@ POST https://sifundo-cse341-personal6.onrender.com/user/ HTTP/1.1
 Content-Type: application/json
 
 {
-        "username": "sifweb",
-        "firstName": "Sifundo",
-        "lastName": "Maphosa",
-        "password": "Indlukula@2023",
-        "email": "sifundo@maphosa.com",
+        "username": "007",
+        "firstName": "James",
+        "lastName": "Bond",
+        "password": "@Jamesbond2023",
+        "email": "james@bond.com",
         "phone": "0772529092",
-        "designation": "Manager"
+        "designation": "Supervisor"
 }
 
 //UPDATE PRODUCT AND USER
@@ -83,7 +85,7 @@ Content-Type: application/json
         "lastName": "Maphosa",
         "password": "Indlukula@2023",
         "email": "sifundo@maphosa.com",
-        "phone": "0772529092",
+        "phone": "0772529999",
         "designation": "Manager"
 }
 
