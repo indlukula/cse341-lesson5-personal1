@@ -38,7 +38,7 @@ GET https://sifundo-cse341-personal6.onrender.com/product HTTP/1.1
 ###
 GET https://sifundo-cse341-personal6.onrender.com/user HTTP/1.1
 ###
-GET https://sifundo-cse341-personal6.onrender.com/product/63fdc4e58dfec2a2d7ee0abb HTTP/1.1
+GET https://sifundo-cse341-personal6.onrender.com/product/641525ef09898f29f78203be HTTP/1.1
 ###
 GET https://sifundo-cse341-personal6.onrender.com/user/sifweb
 
@@ -88,8 +88,9 @@ Content-Type: application/json
 }
 
 ###
-PUT https://sifundo-cse341-personal6.onrender.com/product/63fdc7338dfec2a2d7ee0abd/ HTTP/1.1
+PUT https://sifundo-cse341-personal6.onrender.com/product/641525ef09898f29f78203be/ HTTP/1.1
 Content-Type: application/json
+
 {
         "PLUcode": 2314,
         "barcode": 6789456371523,
