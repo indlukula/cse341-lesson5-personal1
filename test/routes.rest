@@ -1,0 +1,117 @@
+// LOCALHOST
+###
+GET http://localhost:8080/contacts/
+###
+GET http://localhost:8080/user
+
+###
+POST http://localhost:8080/product HTTP/1.1
+Content-Type: application/json
+{
+        "PLUcode": 2314,
+        "barcode": 6789456371523,
+        "productName": "Aquaclaer Water 500ml",
+        "category": "water",
+        "packsize": 24,
+        "quantity": 12,
+        "unitPrice": 0.30,
+        "sellingPrice": 0.50
+}
+
+###
+POST http://localhost:8080/user/ HTTP/1.1
+Content-Type: application/json
+{
+        "username": "mabax",
+        "firstname": "Mduduzi",
+        "lastname": "Sibanda",
+        "password": "Mabaleka2023",
+        "email": "mduduzi@sibanda.com",
+        "phone": "0772777102",
+        "designation": "Cashier"
+}
+
+// PRODUCTION Deploy
+
+###
+GET https://sifundo-cse341-personal6.onrender.com/product HTTP/1.1
+###
+GET https://sifundo-cse341-personal6.onrender.com/user HTTP/1.1
+###
+GET https://sifundo-cse341-personal6.onrender.com/product/63fdc4e58dfec2a2d7ee0abb HTTP/1.1
+###
+GET https://sifundo-cse341-personal6.onrender.com/user/sifweb
+
+//CREATE USER AND PRODUCT
+###
+POST https://sifundo-cse341-personal6.onrender.com/product/ HTTP/1.1
+Content-Type: application/json
+
+{
+        "PLUcode": 7621,
+        "barcode": 645331342537,
+        "productName": "7up 500ml",
+        "category": "soft drinks",
+        "packsize": 24,
+        "quantity": 6,
+        "unitPrice": 0.30,
+        "sellingPrice": 0.50
+}
+
+###
+POST https://sifundo-cse341-personal6.onrender.com/user/ HTTP/1.1
+Content-Type: application/json
+
+{
+        "username": "sifweb",
+        "firstName": "Sifundo",
+        "lastName": "Maphosa",
+        "password": "Indlukula@2023",
+        "email": "sifundo@maphosa.com",
+        "phone": "0772529092",
+        "designation": "Manager"
+}
+
+//UPDATE PRODUCT AND USER
+###
+PUT https://sifundo-cse341-personal6.onrender.com/user/sifweb/ HTTP/1.1
+Content-Type: application/json
+
+{
+        "username": "sifweb",
+        "firstName": "Sifundo",
+        "lastName": "Maphosa",
+        "password": "Indlukula@2023",
+        "email": "sifundo@maphosa.com",
+        "phone": "0772529092",
+        "designation": "Manager"
+}
+
+###
+PUT https://sifundo-cse341-personal6.onrender.com/product/63fdc7338dfec2a2d7ee0abd/ HTTP/1.1
+Content-Type: application/json
+{
+        "PLUcode": 2314,
+        "barcode": 6789456371523,
+        "productName": "Aquaclaer Water 500ml",
+        "category": "water",
+        "packsize": 24,
+        "quantity": 12,
+        "unitPrice": 0.30,
+        "sellingPrice": 0.50
+}
+
+###
+DELETE https://sifundo-cse341-personal6.onrender.com/user/sifweb/ HTTP/1.1
+Content-Type: application/json
+
+{
+
+}
+
+###
+DELETE https://sifundo-cse341-personal6.onrender.com/product/63fdc7338dfec2a2d7ee0abd/ HTTP/1.1
+Content-Type: application/json
+{
+
+}

@@ -3,7 +3,7 @@ const Product = db.product;
 const ObjectId = require('mongodb').ObjectId;
 
 
-module.exports.getAll = async (req, res) => {
+module.exports.getAll = async (req, res,) => {
   try {
     Product.find({})
     .then((data) => {
