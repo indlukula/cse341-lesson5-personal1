@@ -17,14 +17,14 @@ app
     next();
   })
   .use('/', require('./routes'));
-
+  
 //const db = require('./models');
 //db.mongodb
 //  .connect(db.url, {
- //   useNewUrlParser: true,
-//    useUnifiedTopology: true
-//  })
-mongodb.initDb((err, _mongodb) => {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// })
+mongodb.initDb((err) => {
 	if (err) {
 		console.log(err);
 	} else {

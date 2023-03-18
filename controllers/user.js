@@ -1,10 +1,10 @@
 
-const db = require('../models');
-const User = db.user;
+//const db = require('../models');
+//const User = db.user;
 const passwordUtil = require('../util/passwordComplexityCheck');
 const mongodb = require('../config/db.config.js');
-const database = require('../config/db.config.js').database;
-const collection = require('../config/db.config.js').collection;
+const database1 = require('../config/db.config.js').database1;
+const collection1 = require('../config/db.config.js').collection1;
 
 const createUser = async(req, res) => {
   try {
@@ -28,8 +28,8 @@ const createUser = async(req, res) => {
     };
     const response = await mongodb
       .getDb()
-      .db(database)
-      .collection(collection)
+      .db(database1)
+      .collection(collection1)
       .insertOne(newUser);
 
       if (response.acknowledged) {
@@ -51,8 +51,8 @@ const createUser = async(req, res) => {
       try {
           mongodb
               .getDb()
-              .db(database)
-              .collection(collection)
+              .db(database1)
+              .collection(collection1)
               .find()
               .toArray().then((lists) => {
               res.setHeader('Content-Type', 'application/json');
@@ -71,9 +71,9 @@ const getUser = async(req, res) => {
     const username = req.params.username;
     mongodb
     .getDb()
-    .db(database)
-    .collection(collection)
-    User.find({ username: username })
+    .db(database1)
+    .collection(collection1)
+    .find({ username: username })
     .then((data) => {
     res.status(200).send(data);
 })
@@ -90,7 +90,6 @@ res.status(500).json(err);
 const updateUser = async (req, res) => {
   try {
     const username = req.params.username;
-    User.find({username: username})
     if (!username) {
       res.status(400).send({ message: 'Invalid Username Supplied' });
       return;
@@ -114,8 +113,8 @@ const updateUser = async (req, res) => {
 
     const response = await mongodb
         .getDb()
-        .db(database)
-        .collection(collection)
+        .db(database1)
+        .collection(collection1)
         .replaceOne({ username: username }, updatedUser); 
     if (response.modifiedCount > 0) {
       res.status(204).json(response);
@@ -136,8 +135,8 @@ const deleteUser = async (req, res) => {
     }
     const response = await mongodb
         .getDb()
-        .db(database)
-        .collection(collection)
+        .db(database1)
+        .collection(collection1)
         .deleteOne({ username: username }, true);
         console.log(response);
     if (response.deletedCount > 0) {

@@ -27,8 +27,8 @@
     "joi": "^17.8.3",
     "joi-password-complexity": "^5.1.0",
     "jsonwebtoken": "^9.0.0",
+    "mogoose": "^0.0.1-security",
     "mongodb": "^4.4.0",
-    "mongoose": "^6.2.4",
     "swagger-ui-express": "^4.6.2",
     "validatorjs": "^3.22.1"
   },

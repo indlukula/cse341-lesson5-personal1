@@ -1,5 +1,4 @@
-const db = require('../models');
-const Product = db.product;
+
 const ObjectId = require('mongodb').ObjectId;
 const mongodb = require('../config/db.config.js');
 
@@ -33,7 +32,7 @@ const getProduct = async (req, res) => {
         .getDb()
         .db(database)
         .collection(collection)
-        Product.find({ productId: productId })
+        .find({ productId: productId })
         .then((data) => {
         res.status(200).send(data);
     })
@@ -123,7 +122,7 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     const productId = req.params.productId;
-    if (productId) {
+    if (!productId) {
       res.status(400).send({ message: 'Invalid ProductId Supplied' });
       return;
     }

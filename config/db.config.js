@@ -1,11 +1,7 @@
-//const dotenv = require('dotenv');
-//dotenv.config();
-
-//module.exports = {
- // url: process.env.MONGODB_URI,
-//};
-const database = 'database';
-const collection = 'collection';
+const database = 'product';
+const collection = 'products';
+const database1 = 'user';
+const collection1 = 'users'
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -38,6 +34,8 @@ const getDb = () => {
 module.exports = {
   database,
   collection,
+  database1,
+  collection1,
   initDb,
   getDb
 }

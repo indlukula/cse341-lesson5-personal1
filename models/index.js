@@ -1,12 +1,12 @@
 const dbConfig = require('../config/db.config.js');
 
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+const mongodb = require('mongodb');
+mongodb.Promise = global.Promise;
 
 const db = {};
-db.mongoose = mongoose;
+db.mongodb = mongodb;
 db.url = dbConfig.url;
-db.product = require('./product.js')(mongoose).product;
-db.user = require('./user.js')(mongoose).user;
+db.product = require('./product.js')(mongodb).product;
+db.user = require('./user.js')(mongodb).user;
 
 module.exports = db;

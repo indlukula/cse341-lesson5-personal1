@@ -36,13 +36,13 @@ Content-Type: application/json
 // PRODUCTION Deploy
 
 ###
-GET https://sifundo-cse341-personal6.onrender.com/product HTTP/1.1
+GET https://sifundo-cse341-personal6.onrender.com/product/ HTTP/1.1
 ###
-GET https://sifundo-cse341-personal6.onrender.com/user HTTP/1.1
+GET https://sifundo-cse341-personal6.onrender.com/user/ HTTP/1.1
 ###
-GET https://sifundo-cse341-personal6.onrender.com/product/641525ef09898f29f78203be HTTP/1.1
+GET https://sifundo-cse341-personal6.onrender.com/product/641525ef09898f29f78203be/ HTTP/1.1
 ###
-GET https://sifundo-cse341-personal6.onrender.com/user/sifweb
+GET https://sifundo-cse341-personal6.onrender.com/user/sifweb/ HTTP/1.1
 
 //CREATE USER AND PRODUCT
 ###
